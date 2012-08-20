@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 import os
 import time
 import string
@@ -17,12 +19,15 @@ while True:
 	os.chdir('/media/c/servbackup')
 	dest= os.listdir('.')
 
-
 	for files in origin:
 		if files not in dest:
 			filestr= str(files)
-			os.system('cp -rf /home/elwlwlwk/datas/'+filestr.replace(' ', '\ ')+' /media/c/servbackup/')
+			
+			filestr= filestr.replace(' ', '\ ')
+			filestr= filestr.replace('(', '\(')
+			filestr= filestr.replace(')', '\)')
+
+			os.system('cp -rf /home/elwlwlwk/datas/'+filestr+' /media/c/servbackup/')
 			print(files)
 
-	time.sleep(60)
-
+	time.sleep(60*60)
